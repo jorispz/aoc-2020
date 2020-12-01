@@ -5,6 +5,7 @@ inline fun <T> T.print(msg: (T) -> Any? = { it }): T = this.apply { println(msg(
 
 fun String.sorted(): String = this.toList().sorted().joinToString()
 
+fun <T> Sequence<T>.without(element: T): Sequence<T> = this.filter { it != element }
 fun <T> List<T>.without(element: T): List<T> = this.filter { it != element }
 fun <T> List<T>.replaceElementAt(index: Int, newValue: T): List<T> =
     this.toMutableList().apply { this[index] = newValue }

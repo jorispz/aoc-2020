@@ -47,5 +47,14 @@ There is a very explicit warning in the [FAQ of Kotlin/Native](https://github.co
 
 Apart from that, all measurements were taken on my laptop, under non-controlled circumstances using non-optimized code and tools. So, **if you use the results below for anything important, you're insane...**
 
+# Day 1
+Today I had a lot of trouble getting everything compiling and running. First, somehow my IntelliJ run configuration for the JVM had somehow been corrupted which took me ages to discover, and then there was an issue with the native runner.
+
+| Platform | Average (ms)           | Measurements (ms) |
+| ---------| ----------------------:|------------------:|
+| JVM      | 21&nbsp;±&nbsp;20 | ` 99,  30,  25,  41,  20,  31,  16,  10,  15,  10,  15,  11,  11,  11,  12,  12,  12,  11,  11,  13` |
+| Node JS  | 14.5 ± 14.8       | ` 70,  35,  31,  12,   9,   8,   9,   8,   7,  11,   9,   9,   8,   8,   8,   9,   8,   7,   7,   8` |
+| Native   | 147 ± 9.7         | `158, 143, 132, 141, 143, 142, 141, 152, 171, 143, 142, 146, 144, 144, 137, 149, 150, 137, 150, 170` | 
+
 
   
