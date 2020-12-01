@@ -6,6 +6,30 @@ inline fun <T> T.print(msg: (T) -> Any? = { it }): T = this.apply { println(msg(
 fun String.sorted(): String = this.toList().sorted().joinToString()
 
 fun <T> Sequence<T>.without(element: T): Sequence<T> = this.filter { it != element }
+fun <T> Sequence<T>.pairs(pairWithSelf: Boolean = true, includeMirrors: Boolean = true): Sequence<Pair<T, T>> {
+    var indexFirst = 0
+    var indexSecond = 0
+    return sequence {
+        this@pairs.iterator().forEach { first ->
+            val other = if (includeMirrors) {
+                indexSecond = 0
+                this@pairs.iterator()
+            } else {
+                indexSecond = indexFirst
+                this@pairs.drop(indexFirst).iterator()
+            }
+
+            other.iterator().forEach { second ->
+                if (indexFirst != indexSecond || pairWithSelf) {
+                    yield(Pair(first, second))
+                }
+                indexSecond++
+            }
+            indexFirst++
+        }
+    }
+}
+
 fun <T> List<T>.without(element: T): List<T> = this.filter { it != element }
 fun <T> List<T>.replaceElementAt(index: Int, newValue: T): List<T> =
     this.toMutableList().apply { this[index] = newValue }
