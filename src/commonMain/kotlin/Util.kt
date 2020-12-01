@@ -16,7 +16,7 @@ fun <T> Collection<T>.whenNotEmpty(block: (Collection<T>) -> Unit) {
     }
 }
 
-fun <T : Comparable<T>> Iterable<T>.maxWithIndex(): IndexedValue<T>? = this.withIndex().maxBy { it.value }
+fun <T : Comparable<T>> Iterable<T>.maxWithIndex(): IndexedValue<T>? = this.withIndex().maxByOrNull { it.value }
 
 fun <T> MutableSet<T>.takeFirst(): T = this.first().also { remove(it) }
 //fun <T> MutableList<T>.takeFirst(): T = this.first().also { removeAt(0) }
@@ -132,10 +132,10 @@ data class BoundingBox(val topLeft: Position, val bottomRight: Position) {
 }
 
 fun Collection<Position>.boundingBox(): BoundingBox {
-    val minX = this.minBy { it.x }?.x!!
-    val maxX = this.maxBy { it.x }?.x!!
-    val minY = this.minBy { it.y }?.y!!
-    val maxY = this.maxBy { it.y }?.y!!
+    val minX = this.minByOrNull { it.x }?.x!!
+    val maxX = this.maxByOrNull { it.x }?.x!!
+    val minY = this.minByOrNull { it.y }?.y!!
+    val maxY = this.maxByOrNull { it.y }?.y!!
     return BoundingBox(Position(minX, maxY), Position(maxX, minY))
 }
 
