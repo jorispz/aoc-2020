@@ -15,7 +15,7 @@ kotlin {
             kotlinOptions.jvmTarget = "11"
         }
     }
-    js {
+    js(IR) {
         nodejs()
     }
     val hostOs = System.getProperty("os.name")
