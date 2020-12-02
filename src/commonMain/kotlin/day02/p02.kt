@@ -12,7 +12,7 @@ class PasswordLine(range: IntRange, ch: Char, password: String) {
 val p02 = suspend {
     val pattern = Regex("""(\d*)-(\d*) ([a-z]): (.*)""")
     val passwordList = input.lines().map {
-        val (min, max, character, password) = pattern.matchEntire(it)!!.groupValues.drop(1)
+        val (min, max, character, password) = pattern.matchEntire(it)!!.destructured
         PasswordLine(IntRange(min.toInt(), max.toInt()), character[0], password)
     }
 
