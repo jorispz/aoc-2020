@@ -72,7 +72,7 @@ data class Position(val x: Int, val y: Int) {
     }
 
     fun move(dx: Int = 0, dy: Int = 0) = Position(this.x + dx, this.y + dy)
-    fun move(v: Vector) = Position(this.x + v.dx, this.y + v.dy)
+    operator fun plus(v: Vector) = Position(this.x + v.dx, this.y + v.dy)
 
     fun headingTo(other: Position) = when (other) {
         this.up -> Heading.N
@@ -105,6 +105,36 @@ data class Position(val x: Int, val y: Int) {
 
 
 }
+
+class CharMap(input: List<String>, val wrapX: Boolean = false, val wrapY: Boolean = false) {
+
+    private var map: Array<CharArray> = Array(input.size) { y ->
+        CharArray(input[y].length) { x ->
+            input[y][x]
+        }
+    }
+
+    val height = input.size
+    val width by lazy {
+        map.maxOf { it.size }
+    }
+
+    val maxY = height - 1
+    val maxX by lazy { width - 1 }
+
+
+    fun print() {
+        map.forEach { println(it.joinToString("")) }
+    }
+
+    operator fun get(x: Int, y: Int): Char {
+        return map[if (wrapY) y.rem(height) else y][if (wrapX) x.rem(width) else x]
+    }
+
+    operator fun get(p: Position) = this[p.x, p.y]
+
+}
+
 
 operator fun Pair<Int, Int>.plus(other: Pair<Int, Int>) = Pair(this.first + other.first, this.second + other.second)
 operator fun Triple<Int, Int, Int>.plus(other: Triple<Int, Int, Int>) =

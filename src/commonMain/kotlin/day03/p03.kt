@@ -1,31 +1,17 @@
 // Part 1: 278
 // Part 2: 9709761600
 val p03 = suspend {
-    val trees = input.lines().flatMapIndexed { y: Int, line: String ->
-        line.mapIndexedNotNull { x: Int, c: Char ->
-            if (c == '#') Position(x, y) else null
+    val map = CharMap(input.lines(), wrapX = true)
+
+    fun countTrees(dx: Int, dy: Int): Long {
+        val positions = generateSequence(Position.ORIGIN) {
+            it.move(dx, dy)
         }
-    }
-    val bbox = trees.boundingBox()
-    fun Position.moveToboggan(slope: Vector) = Position((x + slope.dx).rem(bbox.width), y + slope.dy)
-    fun countTrees(slope: Vector): Long {
-        var pos = Position(0, 0)
-        var count = 0L
-        while (pos.y <= bbox.topLeft.y) {
-            if (trees.contains(pos)) count++
-            pos = pos.moveToboggan(slope)
-        }
-        return count
+        return positions.takeWhile { it.y <= map.maxY }.countLong { map[it] == '#' }
     }
 
-    val first = countTrees(Vector(3, 1)).print { "Part 1: $it" }
-    listOf(
-        Vector(1, 1),
-        Vector(5, 1),
-        Vector(7, 1),
-        Vector(1, 2)
-    ).fold(first) { result, vector -> result * countTrees(vector) }
-        .print { "Part 2: $it" }
+    val first = countTrees(3, 1).print { "Part 1: $it" }
+    (first * countTrees(1, 1) * countTrees(5, 1) * countTrees(7, 1) * countTrees(1, 2)).print { "Part 2: $it" }
 }
 
 
