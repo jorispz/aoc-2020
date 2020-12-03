@@ -30,6 +30,12 @@ fun <T> Sequence<T>.pairs(pairWithSelf: Boolean = true, includeMirrors: Boolean 
     }
 }
 
+public inline fun <T> Sequence<T>.countLong(predicate: (T) -> Boolean): Long {
+    var count = 0L
+    for (element in this) if (predicate(element)) ++count
+    return count
+}
+
 fun <T> List<T>.without(element: T): List<T> = this.filter { it != element }
 fun <T> List<T>.replaceElementAt(index: Int, newValue: T): List<T> =
     this.toMutableList().apply { this[index] = newValue }
@@ -45,6 +51,7 @@ fun <T : Comparable<T>> Iterable<T>.maxWithIndex(): IndexedValue<T>? = this.with
 fun <T> MutableSet<T>.takeFirst(): T = this.first().also { remove(it) }
 //fun <T> MutableList<T>.takeFirst(): T = this.first().also { removeAt(0) }
 
+data class Vector(val dx: Int, val dy: Int)
 data class Position(val x: Int, val y: Int) {
 
     companion object {
@@ -63,6 +70,9 @@ data class Position(val x: Int, val y: Int) {
     val down by lazy {
         Position(x, y + 1)
     }
+
+    fun move(dx: Int = 0, dy: Int = 0) = Position(this.x + dx, this.y + dy)
+    fun move(v: Vector) = Position(this.x + v.dx, this.y + v.dy)
 
     fun headingTo(other: Position) = when (other) {
         this.up -> Heading.N
@@ -144,6 +154,9 @@ enum class Heading {
 }
 
 data class BoundingBox(val topLeft: Position, val bottomRight: Position) {
+    val width = 1 + bottomRight.x - topLeft.x
+    val height = 1 + topLeft.y - bottomRight.y
+
     fun render(block: (Position) -> Char) {
         println()
         (bottomRight.y..topLeft.y).map { y ->
