@@ -53,15 +53,48 @@ Today I had a lot of trouble getting everything compiling and running. First, so
 | Platform         | Average (ms)           | Measurements (ms) |
 | -----------------| ----------------------:|------------------:|
 | JVM (OpenJDK 11) | 21&nbsp;±&nbsp;20 | ` 99,  30,  25,  41,  20,  31,  16,  10,  15,  10,  15,  11,  11,  11,  12,  12,  12,  11,  11,  13` |
-| Node JS          | 14.5&nbsp;±&nbsp;14.8       | ` 70,  35,  31,  12,   9,   8,   9,   8,   7,  11,   9,   9,   8,   8,   8,   9,   8,   7,   7,   8` |
+| Node JS          | 14.5&nbsp;±&nbsp;14.8       | ` 70, 35, 31, 12, 9, 8, 9, 8, 7, 11, 9, 9, 8, 8, 8, 9, 8, 7, 7, 8` |
 | Native           | 147&nbsp;±&nbsp;9.7         | `158, 143, 132, 141, 143, 142, 141, 152, 171, 143, 142, 146, 144, 144, 137, 149, 150, 137, 150, 170` | 
 
 # Day 2
+
 | Platform         | Average (ms)           | Measurements (ms) |
 | -----------------| ----------------------:|------------------:|
-| JVM (OpenJDK 11) | 9.1&nbsp;±&nbsp;14.7   | `71, 16, 11,  7,  7,  6,  5,  5,  5,  8,  4,  5,  2,  3,  3,  4,  2,  2,  4,  4` |
-| Node JS          | 17.4&nbsp;±&nbsp;18.6  | `90, 43, 25, 20, 12, 10,  8,  8,  9,  8,  9,  8,  8,  8, 19, 11, 11, 11,  9, 11` |
+| JVM (OpenJDK 11) | 9.1&nbsp;±&nbsp;14.7   | `71, 16, 11, 7, 7, 6, 5, 5, 5, 8, 4, 5, 2, 3, 3, 4, 2, 2, 4, 4` |
+| Node JS          | 17.4&nbsp;±&nbsp;18.6  | `90, 43, 25, 20, 12, 10, 8, 8, 9, 8, 9, 8, 8, 8, 19, 11, 11, 11, 9, 11` |
 | Native           | 39.1&nbsp;±&nbsp;7.5   | `36, 36, 37, 34, 34, 36, 34, 45, 41, 68, 34, 42, 36, 35, 42, 34, 38, 35, 41, 34` | 
+
+# Day 3
+
+NodeJS did not finish, but errored out with
+
+```
+Running day 3 20 times on platform JS
+
+C:\dev\projects\aoc-2020\build\js\packages\aoc-2020\kotlin\aoc-2020.js:1511
+          throw e;
+          ^
+IndexOutOfBoundsException: index: 2, size: 2
+    at Object.captureStack (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:39116:15)
+    at IndexOutOfBoundsException.Exception [as constructor] (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:39443:14)
+    at IndexOutOfBoundsException.RuntimeException [as constructor] (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:39469:17)
+    at RuntimeException_init_0 (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:39480:24)
+    at new IndexOutOfBoundsException (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:39529:7)
+    at AbstractList$Companion.checkElementIndex_6xvm5r$ (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:49001:15)
+    at ArrayList.rangeCheck_xcmk5o$_0 (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:41912:44)
+    at ArrayList.get_za3lpa$ (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:41821:48)
+    at Coroutine$run.doResume (C:\dev\projects\aoc-2020\build\js\packages\aoc-2020\kotlin\aoc-2020.js:619:40)
+    at run (C:\dev\projects\aoc-2020\build\js\packages\aoc-2020\kotlin\aoc-2020.js:693:23) {
+  'message_8yp7un$_0': 'index: 2, size: 2',
+  'cause_th0jdv$_0': null
+}
+```
+
+| Platform         | Average (ms)           | Measurements (ms) |
+| -----------------| ----------------------:|------------------:|
+| JVM (OpenJDK 11) | 5.7&nbsp;±&nbsp;11.1   | `53, 7, 4, 4, 2, 5, 5, 4, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1` |
+| Node JS          | DNF                    | `DNF` |
+| Native           | 25.2&nbsp;±&nbsp;6.4   | `20, 20, 29, 31, 22, 17, 36, 17, 30, 26, 20, 18, 31, 22, 33, 27, 25, 18, 36, 17` | 
 
 
   
