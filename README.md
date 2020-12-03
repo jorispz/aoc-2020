@@ -66,30 +66,6 @@ Today I had a lot of trouble getting everything compiling and running. First, so
 
 # Day 3
 
-NodeJS did not finish, but errored out with
-
-```
-Running day 3 20 times on platform JS
-
-C:\dev\projects\aoc-2020\build\js\packages\aoc-2020\kotlin\aoc-2020.js:1511
-          throw e;
-          ^
-IndexOutOfBoundsException: index: 2, size: 2
-    at Object.captureStack (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:39116:15)
-    at IndexOutOfBoundsException.Exception [as constructor] (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:39443:14)
-    at IndexOutOfBoundsException.RuntimeException [as constructor] (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:39469:17)
-    at RuntimeException_init_0 (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:39480:24)
-    at new IndexOutOfBoundsException (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:39529:7)
-    at AbstractList$Companion.checkElementIndex_6xvm5r$ (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:49001:15)
-    at ArrayList.rangeCheck_xcmk5o$_0 (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:41912:44)
-    at ArrayList.get_za3lpa$ (C:\dev\projects\aoc-2020\build\js\node_modules\kotlin\kotlin.js:41821:48)
-    at Coroutine$run.doResume (C:\dev\projects\aoc-2020\build\js\packages\aoc-2020\kotlin\aoc-2020.js:619:40)
-    at run (C:\dev\projects\aoc-2020\build\js\packages\aoc-2020\kotlin\aoc-2020.js:693:23) {
-  'message_8yp7un$_0': 'index: 2, size: 2',
-  'cause_th0jdv$_0': null
-}
-```
-
 | Platform         | Average (ms)           | Measurements (ms) |
 | -----------------| ----------------------:|------------------:|
 | JVM (OpenJDK 11) | 5.7&nbsp;±&nbsp;11.1   | `53, 7, 4, 4, 2, 5, 5, 4, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1` |
