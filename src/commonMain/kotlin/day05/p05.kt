@@ -10,11 +10,8 @@ val p05 = suspend {
         it.fold(seating) { node, ch -> node.insert(ch) }
     }
 
-    // Part 1: find maximum seat ID
     seating.seats.maxOrNull().print { "Part 1: $it" }
 
-    // Part 2: Find my boarding pass - it shouldn't be on the list, but it's neighbours
-    // (+1, -1) should be
     (0..1023).toList()
         .filter { it !in seating }
         .single { (it - 1) in seating && (it + 1) in seating }
@@ -65,21 +62,6 @@ class SeatNode(
 
 }
 
-
-fun String.toSeatID(): Int {
-    return this.fold(0..1023) { range, ch ->
-        range.partition(ch)
-    }.first
-
-//    val row = substring(0..6).fold(0..127) { range, ch ->
-//        range.partition(ch)
-//    }.first
-//    val column = substring(7..9).fold(0..7) { range, ch ->
-//        range.partition(ch)
-//    }.first
-//    return row * 8 + column
-}
-
 val IntRange.length
     get() = 1 + this.last - this.first
 val IntRange.lowerHalf
@@ -87,11 +69,6 @@ val IntRange.lowerHalf
 val IntRange.upperHalf
     get() = IntRange(this.first + this.length / 2, this.last)
 
-fun IntRange.partition(ch: Char) = when (ch) {
-    'B', 'R' -> IntRange(this.first + this.length / 2, this.last)
-    'F', 'L' -> IntRange(this.first, this.last - this.length / 2)
-    else -> error(ch)
-}
 
 val single = """FBFBBFFRLR"""
 val test = """BFFFBBFRRR
