@@ -16,8 +16,6 @@ val p05 = suspend {
         .filter { it !in seating }
         .single { (it - 1) in seating && (it + 1) in seating }
         .print { "Part 2: $it" }
-
-
 }
 
 
