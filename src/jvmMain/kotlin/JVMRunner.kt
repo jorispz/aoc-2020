@@ -8,3 +8,5 @@ suspend fun main(args: Array<String>) {
 }
 
 actual inline fun measureNanos(block: () -> Unit) = measureNanoTime(block)
+
+actual fun readInput(name: String) = {}::class.java.getResource(name).readText()

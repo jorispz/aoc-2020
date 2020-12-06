@@ -16,3 +16,13 @@ suspend fun main() {
     val day = arguments[1].toInt()
     run(repeat, day, "JS")
 }
+
+external fun require(name: String): dynamic
+
+val fs = require("fs")
+val path = require("path");
+
+actual fun readInput(name: String): String {
+    val path = path.join(process.env.AOC_INPUT_DIR, name)
+    return fs.readFileSync(path, "utf8") as String
+}
