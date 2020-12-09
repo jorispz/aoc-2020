@@ -29,7 +29,31 @@ fun <T> Sequence<T>.pairs(pairWithSelf: Boolean = true, includeMirrors: Boolean 
     }
 }
 
-public inline fun <T> Sequence<T>.countLong(predicate: (T) -> Boolean): Long {
+fun <T> Iterable<T>.pairs(pairWithSelf: Boolean = true, includeMirrors: Boolean = true): Sequence<Pair<T, T>> {
+    var indexFirst = 0
+    var indexSecond = 0
+    return sequence {
+        this@pairs.iterator().forEach { first ->
+            val other = if (includeMirrors) {
+                indexSecond = 0
+                this@pairs.iterator()
+            } else {
+                indexSecond = indexFirst
+                this@pairs.drop(indexFirst).iterator()
+            }
+
+            other.iterator().forEach { second ->
+                if (indexFirst != indexSecond || pairWithSelf) {
+                    yield(Pair(first, second))
+                }
+                indexSecond++
+            }
+            indexFirst++
+        }
+    }
+}
+
+inline fun <T> Sequence<T>.countLong(predicate: (T) -> Boolean): Long {
     var count = 0L
     for (element in this) if (predicate(element)) ++count
     return count
