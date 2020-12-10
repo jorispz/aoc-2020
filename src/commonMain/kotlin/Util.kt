@@ -8,7 +8,7 @@ fun String.sorted(): String = this.toList().sorted().joinToString()
 fun <T> Sequence<T>.without(element: T): Sequence<T> = this.filter { it != element }
 fun <T> Sequence<T>.pairs(pairWithSelf: Boolean = true, includeMirrors: Boolean = true): Sequence<Pair<T, T>> {
     var indexFirst = 0
-    var indexSecond = 0
+    var indexSecond: Int
     return sequence {
         this@pairs.iterator().forEach { first ->
             val other = if (includeMirrors) {
@@ -32,7 +32,7 @@ fun <T> Sequence<T>.pairs(pairWithSelf: Boolean = true, includeMirrors: Boolean 
 
 fun <T> Iterable<T>.pairs(pairWithSelf: Boolean = true, includeMirrors: Boolean = true): Sequence<Pair<T, T>> {
     var indexFirst = 0
-    var indexSecond = 0
+    var indexSecond: Int
     return sequence {
         this@pairs.iterator().forEach { first ->
             val other = if (includeMirrors) {
