@@ -4,6 +4,7 @@ inline fun <T> T.print(msg: (T) -> Any? = { it }): T = this.apply { println(msg(
 
 fun String.sorted(): String = this.toList().sorted().joinToString()
 
+
 fun <T> Sequence<T>.without(element: T): Sequence<T> = this.filter { it != element }
 fun <T> Sequence<T>.pairs(pairWithSelf: Boolean = true, includeMirrors: Boolean = true): Sequence<Pair<T, T>> {
     var indexFirst = 0
